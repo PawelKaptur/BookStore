@@ -19,18 +19,16 @@
         <div class="col-md-5">
             <h3 th:text="${book.id}"></h3>
             <p>
-                <strong>Book title: </strong><spanth th:text="${book.title}"></spanth>
+                <strong>Book title: </strong><span th:text="${book.title}"></span>
             </p>
             <p>
-                <strong>Wrote by: </strong><spanth th:text="${book.authors}"></spanth>
+                <strong>Wrote by: </strong><span th:text="${book.authors}"></span>
             </p>
             <p>
                 <a th:href="@{'/books'}" class="btn btn-default">
                     <span class="glyphicon-hand-left glyphicon"></span> back
                 </a>
-
             </p>
-
         </div>
     </div>
 </section>

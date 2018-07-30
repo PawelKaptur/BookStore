@@ -3,10 +3,11 @@ package pl.jstk.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-import pl.jstk.entity.BookEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import pl.jstk.enumerations.BookStatus;
-import pl.jstk.mapper.BookMapper;
 import pl.jstk.service.BookService;
 import pl.jstk.to.BookTo;
 
@@ -34,18 +35,21 @@ public class BookContoller {
     }
 
     @GetMapping("/books/add")
-    public String addBook(Model model){
+    public String addBook(Model model) {
         model.addAttribute("newBook", new BookTo());
         return "addBook";
     }
 
     @PostMapping("/greeting")
-    public String addBook(@ModelAttribute("newBook") BookTo book, String title, String authors, BookStatus bookStatus){
-        book.setId(213L);
-        book.setTitle(title);
-        book.setAuthors(authors);
-        book.setStatus(bookStatus);
+    public String addBook(@ModelAttribute("newBook") BookTo book, BookStatus bookStatus, Model model) {
+        book.setStatus(bookStatus); //to nie dziala
         bookService.saveBook(book);
-        return "welcome";
+        return getBooks(model);
+    }
+
+    @GetMapping("/books/remove/{bookId}")
+    public String removeBookById(@RequestParam("id") Long bookId, Model model) {
+        bookService.deleteBook(bookId);
+        return getBooks(model);
     }
 }

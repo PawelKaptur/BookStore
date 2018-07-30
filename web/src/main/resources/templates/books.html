@@ -27,9 +27,14 @@
                             <p th:text="${book.authors}"></p>
                             <p th:text="${book.status}">Status: </p>
                             <p>
-                                <!--<a th:href="@{'/books/'+${book.id}}"-->
                                 <a th:href="@{'/books/book?id='+${book.id}}" class="btn btn-primary">
                                     <span class="glyphicon-info-sign glyphicon"/></span> Details
+                                </a>
+                            </p>
+
+                            <p>
+                                <a th:href="@{'/books/remove/book?id='+${book.id}}" class="btn btn-danger">
+                                    <span class="glyphicon-info-sign glyphicon"/></span> Remove
                                 </a>
                             </p>
 
