@@ -41,7 +41,6 @@ public class BookContoller {
 
     @PostMapping("/greeting")
     public String addBook(@ModelAttribute("newBook") BookTo book, Model model) {
-        //book.setStatus(status); //to nie dziala
         bookService.saveBook(book);
         return getBooks(model);
     }
