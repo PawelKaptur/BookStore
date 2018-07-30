@@ -19,5 +19,4 @@ public class HomeController {
         model.addAttribute(ModelConstants.INFO, INFO_TEXT);
         return ViewNames.WELCOME;
     }
-
 }
