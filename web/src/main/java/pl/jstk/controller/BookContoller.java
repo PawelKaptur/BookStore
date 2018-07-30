@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import pl.jstk.enumerations.BookStatus;
 import pl.jstk.service.BookService;
 import pl.jstk.to.BookTo;
 
@@ -41,8 +40,8 @@ public class BookContoller {
     }
 
     @PostMapping("/greeting")
-    public String addBook(@ModelAttribute("newBook") BookTo book, BookStatus bookStatus, Model model) {
-        book.setStatus(bookStatus); //to nie dziala
+    public String addBook(@ModelAttribute("newBook") BookTo book, Model model) {
+        //book.setStatus(status); //to nie dziala
         bookService.saveBook(book);
         return getBooks(model);
     }
@@ -50,6 +49,7 @@ public class BookContoller {
     @GetMapping("/books/remove/{bookId}")
     public String removeBookById(@RequestParam("id") Long bookId, Model model) {
         bookService.deleteBook(bookId);
+        model.addAttribute("bookRemoved", "Book was successfully removed.");
         return getBooks(model);
     }
 }
