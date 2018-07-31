@@ -12,7 +12,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import sun.net.www.protocol.http.AuthenticationHeader;
 
 @Configuration
 @EnableWebMvc
@@ -29,11 +28,10 @@ public class WebConfig extends WebSecurityConfigurerAdapter implements WebMvcCon
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/", "/webjars/**").permitAll()
+                .antMatchers("/", "/webjars/**", "/img/*", "/css/*").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().loginPage("/login").permitAll()
-                .defaultSuccessUrl("/books")
                 .and()
                 .logout().permitAll();
     }
