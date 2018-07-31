@@ -33,7 +33,7 @@ public class WebConfig extends WebSecurityConfigurerAdapter implements WebMvcCon
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().loginPage("/login").permitAll()
-                .successForwardUrl("/books")
+                .defaultSuccessUrl("/books")
                 .and()
                 .logout().permitAll();
     }
@@ -46,7 +46,6 @@ public class WebConfig extends WebSecurityConfigurerAdapter implements WebMvcCon
                 .and()
                 .withUser("user").password(passwordEncoder().encode("qwertz")).roles("USER");
     }
-
 
     @Bean
     public PasswordEncoder passwordEncoder() {

@@ -21,8 +21,7 @@ public class HomeController {
     }
 
     @GetMapping("/login")
-    public String login(Model model) {
-        //model.addAttribute("loginData", new UserTo());
+    public String login() {
         return "login";
     }
 
