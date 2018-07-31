@@ -10,8 +10,29 @@
     <section>
         <div class="jumbotron">
             <div class="container">
-                <h1 th:text="${message}"></h1>
-                <p th:text="${info}"></p>
+                <section>
+                    <div th:if="${bookAdded}" class="alert alert-info">
+                        <P th:text="${bookAdded}"></P>
+                    </div>
+                </section>
+                <section th:if="${book}"  class="container">
+                    <div class="row">
+                        <div class="col-md-5" th:object="${book}">
+                            <h3>Details of added book:</h3>
+                            <p>
+                                <strong>Book title: </strong><span th:text="${book.title}"></span>
+                            </p>
+                            <p>
+                                <strong>Wrote by: </strong><span th:text="${book.authors}"></span>
+                            </p>
+                            <p>
+                                <strong>Status: </strong><span th:text="${book.status}"></span>
+                            </p>
+                        </div>
+                    </div>
+                </section>
+                <!--<h1 th:text="${message}"></h1>
+                <p th:text="${info}"></p>-->
             </div>
         </div>
     </section>

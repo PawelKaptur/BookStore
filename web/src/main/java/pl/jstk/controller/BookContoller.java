@@ -41,7 +41,9 @@ public class BookContoller {
     @PostMapping("/greeting")
     public String addBook(@ModelAttribute("newBook") BookTo book, Model model) {
         bookService.saveBook(book);
-        return getBooks(model);
+        model.addAttribute("bookAdded", "Book was successfully added");
+        model.addAttribute("book", book);
+        return "welcome";
     }
 
     @Secured("ROLE_ADMIN")
