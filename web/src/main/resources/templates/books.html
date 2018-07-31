@@ -45,7 +45,7 @@
                           <span class="glyphicon-info-sign glyphicon"/></span> Remove
                       </a>-->
                                 <p>
-                                <form th:action="@{'/books/remove/book?id='+${book.id}}" method="post">
+                                <form th:action="@{'/books/remove/book?id='+${book.id}}" th:method="delete">
                                     <button class="btn btn-danger" type="submit" value="Remove">Remove</button>
                                 </form>
                                 </p>

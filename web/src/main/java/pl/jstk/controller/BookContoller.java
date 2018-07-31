@@ -46,8 +46,10 @@ public class BookContoller {
         return "welcome";
     }
 
+
+    //@PostMapping("/books/remove/{bookId}")
     @Secured("ROLE_ADMIN")
-    @PostMapping("/books/remove/{bookId}")
+    @DeleteMapping("/books/remove/{bookId}")
     public String removeBookById(@RequestParam("id") Long bookId, Model model) {
         bookService.deleteBook(bookId);
         model.addAttribute("bookRemoved", "Book was successfully removed.");
