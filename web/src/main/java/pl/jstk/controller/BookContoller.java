@@ -1,6 +1,8 @@
 package pl.jstk.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -45,10 +47,24 @@ public class BookContoller {
         return getBooks(model);
     }
 
-    @GetMapping("/books/remove/{bookId}")
+    //@PreAuthorize("hasRole('ROLE_ADMIN')")
+    @Secured("ROLE_ADMIN")
+    @PostMapping("/books/remove/{bookId}")
     public String removeBookById(@RequestParam("id") Long bookId, Model model) {
         bookService.deleteBook(bookId);
         model.addAttribute("bookRemoved", "Book was successfully removed.");
         return getBooks(model);
+    }
+
+    @GetMapping("/books/find")
+    public String findBook(Model model){
+        model.addAttribute("newBook", new BookTo());
+        return "findBook";
+    }
+
+    @PostMapping("/books/find")
+    public String find(){
+
+        return "findBook";
     }
 }
