@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.*;
 import pl.jstk.service.BookService;
 import pl.jstk.to.BookTo;
 
+import java.awt.print.Book;
+import java.util.List;
+
 
 @Controller
 public class BookContoller {
@@ -46,8 +49,6 @@ public class BookContoller {
         return "welcome";
     }
 
-
-    //@PostMapping("/books/remove/{bookId}")
     @Secured("ROLE_ADMIN")
     @DeleteMapping("/books/remove/{bookId}")
     public String removeBookById(@RequestParam("id") Long bookId, Model model) {
@@ -58,12 +59,17 @@ public class BookContoller {
 
     @GetMapping("/books/find")
     public String findBook(Model model) {
-        model.addAttribute("newBook", new BookTo());
+        model.addAttribute("book", new BookTo());
         return "findBook";
     }
 
     @PostMapping("/books/find")
-    public String find() {
+    public String find(@ModelAttribute("book") BookTo book, Model model) {
+        List<BookTo> books = bookService.findBooksByParams(book);
+        model.addAttribute("books", books);
+        if(books.size() == 0){
+            model.addAttribute("noBooks", "No books were found.");
+        }
 
         return "findBook";
     }

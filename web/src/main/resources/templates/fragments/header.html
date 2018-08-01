@@ -24,9 +24,8 @@
                         <a sec:authentication="name">Username</a>
                     </li>
                     <li sec:authorize="isAuthenticated()" style="display: inline-block;">
-                        <form th:action="@{/logout}"  method="post" id="logout"></form>
+                        <form th:action="@{/logout}" method="post" id="logout"></form>
                         <a href="#" onclick="document.getElementById('logout').submit()"><span class="glyphicon glyphicon-log-out"></span> Log out</a></li>
-                        <!--<a th:href="@{/logout}"><span class="glyphicon glyphicon-log-out"></span> Log out</a></li>-->
                     <li sec:authorize="isAnonymous()"  style="display: inline-block;"><a th:href="@{/login}"><span
                             class="glyphicon glyphicon-log-in"></span> Login</a></li>
                 </ul>

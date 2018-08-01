@@ -15,7 +15,6 @@
             </a>
         </p>
     </section>
-
     <section th:if="${bookRemoved == null}">
         <section>
             <div class="jumbotron">
@@ -40,16 +39,11 @@
                                         <span class="glyphicon-info-sign glyphicon"/></span> Details
                                     </a>
                                 </p>
-
-                                <!--<a th:href="@{'/books/remove/book?id='+${book.id}}" class="btn btn-danger">
-                          <span class="glyphicon-info-sign glyphicon"/></span> Remove
-                      </a>-->
                                 <p>
                                 <form th:action="@{'/books/remove/book?id='+${book.id}}" th:method="delete">
                                     <button class="btn btn-danger" type="submit" value="Remove">Remove</button>
                                 </form>
                                 </p>
-
                             </div>
                         </div>
                     </div>

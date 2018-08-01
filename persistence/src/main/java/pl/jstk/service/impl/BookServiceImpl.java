@@ -1,8 +1,9 @@
 package pl.jstk.service.impl;
 
 
-
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import pl.jstk.entity.BookEntity;
 import pl.jstk.mapper.BookMapper;
@@ -38,6 +39,21 @@ public class BookServiceImpl implements BookService {
     @Override
     public List<BookTo> findBooksByAuthor(String author) {
         return BookMapper.map2To(bookRepository.findBookByAuthor(author));
+    }
+
+    @Override
+    public List<BookTo> findBooksByParams(BookTo book) {
+        List<BookTo> books = new ArrayList<>();
+        if (book.getTitle().length() != 0) {
+            books = BookMapper.map2To(bookRepository.findBookByTitle(book.getTitle()));
+            if (books.size() != 0 && book.getAuthors().length() != 0) {
+                books = books.stream().filter(b -> b.getAuthors().equals(book.getAuthors())).collect(Collectors.toList());
+            }
+        } else if (book.getAuthors().length() != 0) {
+            books = BookMapper.map2To((bookRepository.findBookByAuthor(book.getAuthors())));
+        }
+
+        return books;
     }
 
     @Override
