@@ -19,10 +19,4 @@ public class HomeController {
         model.addAttribute(ModelConstants.INFO, INFO_TEXT);
         return ViewNames.WELCOME;
     }
-
-    @GetMapping("/login")
-    public String login() {
-        return "login";
-    }
-
 }
