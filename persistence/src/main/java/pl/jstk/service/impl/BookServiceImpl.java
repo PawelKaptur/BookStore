@@ -43,14 +43,12 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public List<BookTo> findBooksByParams(BookTo book) {
-        List<BookTo> books = new ArrayList<>();
+        List<BookTo> books = findAllBooks();
         if (book.getTitle().length() != 0) {
-            books = BookMapper.map2To(bookRepository.findBookByTitle(book.getTitle()));
-            if (books.size() != 0 && book.getAuthors().length() != 0) {
-                books = books.stream().filter(b -> b.getAuthors().equals(book.getAuthors())).collect(Collectors.toList());
-            }
-        } else if (book.getAuthors().length() != 0) {
-            books = BookMapper.map2To((bookRepository.findBookByAuthor(book.getAuthors())));
+            books = books.stream().filter(b -> b.getTitle().equals(book.getTitle())).collect(Collectors.toList());
+        }
+        if (book.getAuthors().length() != 0) {
+            books = books.stream().filter(b -> b.getAuthors().equals(book.getAuthors())).collect(Collectors.toList());
         }
 
         return books;
