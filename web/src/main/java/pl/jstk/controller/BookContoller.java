@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 import pl.jstk.service.BookService;
 import pl.jstk.to.BookTo;
 
-import java.awt.print.Book;
 import java.util.List;
 
 
@@ -67,7 +66,7 @@ public class BookContoller {
     public String find(@ModelAttribute("book") BookTo book, Model model) {
         List<BookTo> books = bookService.findBooksByParams(book);
         model.addAttribute("books", books);
-        if(books.size() == 0){
+        if (books.size() == 0) {
             model.addAttribute("noBooks", "No books were found.");
         }
 
