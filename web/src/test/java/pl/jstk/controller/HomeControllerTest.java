@@ -42,17 +42,4 @@ public class HomeControllerTest {
                 .andExpect(content().string(containsString("")));
 
     }
-
-/*    @Test
-    public void shouldExcpectLoginPage() throws Exception {
-
-        //when
-        ResultActions resultActions = mockMvc.perform(get("/login"));
-
-        //then
-        resultActions.andExpect(status().isOk())
-                .andExpect(view().name("login"));
-
-    }*/
-
 }

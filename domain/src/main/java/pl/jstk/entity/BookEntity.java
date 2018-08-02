@@ -68,4 +68,5 @@ public class BookEntity implements Serializable {
 	public void setStatus(BookStatus status) {
 		this.status = status;
 	}
+
 }

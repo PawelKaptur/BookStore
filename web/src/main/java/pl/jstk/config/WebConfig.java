@@ -16,6 +16,9 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import pl.jstk.repository.BookRepository;
+
+import javax.sql.DataSource;
 
 @Configuration
 @EnableWebMvc
@@ -51,6 +54,16 @@ public class WebConfig extends WebSecurityConfigurerAdapter implements WebMvcCon
                 .withUser("admin").password(passwordEncoder().encode("qwertz")).roles("ADMIN")
                 .and()
                 .withUser("user").password(passwordEncoder().encode("qwertz")).roles("USER");
+    }
+
+    @Autowired
+    private DataSource dataSource;
+
+    @Autowired
+    public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception {
+        auth.jdbcAuthentication().dataSource(dataSource)
+                .usersByUsernameQuery("select user_name, password, enabled from user where user_name=?")
+                .authoritiesByUsernameQuery("select user_name, role from user where user_name=?");
     }
 
     @Bean
