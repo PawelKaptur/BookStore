@@ -29,6 +29,9 @@ import javax.sql.DataSource;
         jsr250Enabled = true)
 public class WebConfig extends WebSecurityConfigurerAdapter implements WebMvcConfigurer {
 
+    @Autowired
+    private DataSource dataSource;
+
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry
@@ -55,9 +58,6 @@ public class WebConfig extends WebSecurityConfigurerAdapter implements WebMvcCon
                 .and()
                 .withUser("user").password(passwordEncoder().encode("qwertz")).roles("USER");
     }
-
-    @Autowired
-    private DataSource dataSource;
 
     @Autowired
     public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception {

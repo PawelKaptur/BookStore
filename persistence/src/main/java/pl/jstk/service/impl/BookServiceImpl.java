@@ -39,6 +39,13 @@ public class BookServiceImpl implements BookService {
         return BookMapper.map2To(bookRepository.findBookByAuthor(author));
     }
 
+    /**
+     * Method get BookTo object in parameter and it searching with streams
+     * fork books with same title and authors
+     *
+     * @param book to object that can have two parameters, title and authors
+     * @return list of found books
+     */
     @Override
     public List<BookTo> findBooksByParams(BookTo book) {
         List<BookTo> books = findAllBooks();

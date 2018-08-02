@@ -40,7 +40,6 @@ public class BookContoller {
         return "addBook";
     }
 
-    @Secured("ROLE_ADMIN")
     @PostMapping("/greeting")
     public String addBook(@ModelAttribute("newBook") BookTo book, Model model) {
         bookService.saveBook(book);
