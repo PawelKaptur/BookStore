@@ -62,7 +62,7 @@ public class WebConfig extends WebSecurityConfigurerAdapter implements WebMvcCon
     public OrderedHiddenHttpMethodFilter hiddenHttpMethodFilter() {
         return new OrderedHiddenHttpMethodFilter();
     }
-    
+
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/login").setViewName("login");
         registry.setOrder(Ordered.HIGHEST_PRECEDENCE);

@@ -36,11 +36,23 @@ public class HomeControllerTest {
         ResultActions resultActions = mockMvc.perform(get("/"));
         // then
         resultActions.andExpect(status().isOk())
-                     .andExpect(view().name("welcome"))
-                     .andDo(print())
-                     .andExpect(model().attribute(ModelConstants.MESSAGE, HomeController.WELCOME))
-                     .andExpect(content().string(containsString("")));
+                .andExpect(view().name("welcome"))
+                .andDo(print())
+                .andExpect(model().attribute(ModelConstants.MESSAGE, HomeController.WELCOME))
+                .andExpect(content().string(containsString("")));
 
     }
+
+/*    @Test
+    public void shouldExcpectLoginPage() throws Exception {
+
+        //when
+        ResultActions resultActions = mockMvc.perform(get("/login"));
+
+        //then
+        resultActions.andExpect(status().isOk())
+                .andExpect(view().name("login"));
+
+    }*/
 
 }
